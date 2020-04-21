@@ -34,7 +34,7 @@ fi
 if [[ ! -z $vopt ]]
 then
 {
-echo -e "LJCH - System & Network Monitor ,\nWritten by W1z4r|)0fL0z_TnT!"
+echo -e "Ubuntu System and Network Monitor Tool ,\nWritten by W1z4r|)0fL0z_TnT!"
 }
 fi
 
