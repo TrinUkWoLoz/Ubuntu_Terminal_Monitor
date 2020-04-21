@@ -8,9 +8,9 @@
 clear
 unset reset os architecture kernelrelease internalip externalip nameserver loadaverage
 
-#sudo find / -name "SystemNetworkMonitor" > /tmp/currentdirectory
-#curdir=$(cat /tmp/currentdirectory)
-#cd $curdir
+sudo find / -name "Ubuntu_Terminal_Monitor" > /tmp/currentdirectory
+curdir=$(cat /tmp/currentdirectory)
+cd $curdir
 
 while getopts iv name
 do
@@ -217,20 +217,6 @@ echo $reset | id "$iduser1"
 
 #echo
 
-# Location of user
-#whois=$(whois)
-#echo -e '\033[0;31m'"Location of User:"| whois $externalip
-#echo -e '\033[0;31m'"Location of User:" whois $externalip
-#echo -e "$whois $externalip"
-
-#echo
-
-# Day, date, time, year
-#ddty=$(TZ="Africa/Casablanca" date)
-#echo -e '\033[0;31m'"Day, date, time, year:" $reset $ddty
-
-#echo
-
 # Check System Uptime
 tecuptime=$(uptime | awk '{print $3}' | cut -f1 -d,)
 echo -e '\033[0;31m'"System Uptime Days/(HH:MM):" $reset $tecuptime
@@ -248,7 +234,6 @@ loadaverage=$(top -n 1 -b | grep "load average:" | awk '{print $10 $11 $12}')
 echo -e '\033[0;31m'"Load Average:" $reset $loadaverage
 
 # Number of executable commands
-#cd /root/Desktop/SystemNetworkMonitor
 excount=$(./pathcommands.sh)
 echo -e '\033[0;31m'"Number of executable commands:" $reset"$excount"
 
@@ -299,7 +284,6 @@ ramslot=$(dmidecode -t 16 | sed '10!d' | awk '{print $3,$4}')
 echo -e '\033[0;31m'"Maximium RAM Slotage:" $reset "$ramslot"
 
 #echo
-#echo
 
 # Check if connected to Internet or not
 ping -c 1 google.com &> /dev/null && echo -e '\033[0;31m'"Internet: $reset Connected" || echo -e '\033[0;31m'"Internet: $reset Disconnected"
@@ -323,9 +307,12 @@ echo -e '\033[0;31m'"IPv4:" $reset $ipv4add
 ipv6add=$(ifconfig | sed '3!d' | awk '{print $2 $3}')
 echo -e '\033[0;31m'"IPv6:" $reset $ipv6add
 
+#echo
+
 # Check External IP
 externalip=$(curl -s ipecho.net/plain;echo)
 echo -e '\033[0;31m'"External IP: $reset "$externalip
+
 #echo
 
 # CPU Threads & Cores
@@ -345,7 +332,6 @@ cat /tmp/ramcache | grep -v "Mem"
 echo
 
 # contents of comp directory
-#cd /root/Desktop/SystemNetworkMonitor
 compdir=$(./contents.sh /)
 echo -e '\033[0;31m'"Computer directory contents:"
 echo $reset"$compdir"
@@ -365,13 +351,6 @@ echo -e '\033[0;31m'"Top Processes in Order of RAM Usage:"
 echo $reset"$psram"
 
 #echo
-
-# Iostat
-#iostat=$(iostat | awk '{print $3,$4,$5,$6,$7,$8,$9,$10,$11,$12}')
-#echo -e '\033[0;31m'"Iostat:"
-#echo $reset"$iostat"
-
-echo
 
 # Check Disk Usage / Partition report
 lsblk > /tmp/diskusage
@@ -510,18 +489,6 @@ echo $reset"$connectspeed"
 
 echo
 
-# Check Internal IP
-#internalip=$(hostname -I)
-#echo -e '\033[0;31m'"Internal IP:" $reset $internalip
-
-#echo
-
-# Check External IP & Whois Result
-#externalip=$(curl -s ipecho.net/plain;echo)
-#echo -e '\033[0;31m'"External IP: $reset "$externalip
-#echo
-
-
 echo -e '\033[0;31m'"Would you like to whois external IP? (y/n): "
 echo $reset
 read user_input
@@ -593,7 +560,6 @@ if [ ${user_input} = y ]
     echo " "
 then
 	average=$(./Average.sh)
-#	cd /root/Desktop/SystemNetworkMonitor
 	echo
 	echo
 	echo -e '\033[0;31m'"CPU Averages over 30 seconds:"
@@ -617,7 +583,7 @@ else
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
 	echo
 	echo
-	echo -e "\033[0;36m""   End of script. Written by LJCH - Laurence Harding 		" $reset
+	echo -e "\033[0;36m""   End of script. Written by W1z4r|)0fL0z_TnT! 		                      " $reset
 	echo
 	echo
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
