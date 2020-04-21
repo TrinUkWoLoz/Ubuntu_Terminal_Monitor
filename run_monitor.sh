@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ####################################################################################################
-#                Ubuntu System and Network Monitor Tool (run_monitor.sh                            #                                                                                                                                             #
+#                Ubuntu System and Network Monitor Tool (run_monitor.sh)                           #                                                                                                                                             #
 ####################################################################################################
 
 #! /bin/bash
