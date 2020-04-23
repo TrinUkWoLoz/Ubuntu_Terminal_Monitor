@@ -14,4 +14,4 @@ Accept install of 'monitor' command to allow simple running of program
 
 18t1qnVmnNhCPrC5u2c72HSHGdYHwdsrjd
 
-    yours truly:   W1z4R|)ofL0Z
+    Yours truly:   W1z4R|)ofL0Z
