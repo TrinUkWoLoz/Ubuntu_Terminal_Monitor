@@ -50,112 +50,60 @@ if [[ $# -eq 0 ]]
 then
 {
 
-# Offer of installing script for 'monitor' command
-monitor=$(./run_monitor.sh -i)
-file="/usr/bin/monitor"
-if [ -f "$file" ]
+#FILE=/usr/bin/monitor
+#if test -f "$FILE"; then
+#   echo -e '\033[0;31m'"Monitor command already exists!" $reset
+#else
+#  monitor=$(./run_monitor.sh -i)
+#  $reset  "$monitor"
+#fi
+
+if [ $(dpkg-query -W -f='${Status}' lm-sensors 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	echo -e '\033[0;31m'"Monitor command already exists!" $reset
+  echo
+  apt-get install lm-sensors;
 else
-	echo "Would you like to install 'monitor' command?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		$reset  "$monitor"
-	else
-		echo
-	fi
+  echo
+  echo -e '\033[0;31m'"Sensors application already installed, Ok to proceed!" $reset
 fi
 
-# Check for sensors executable
-sensorsinstall=$(sudo apt install lm-sensors)
-file="/usr/bin/sensors"
-if [ -f "$file" ]
+
+if [ $(dpkg-query -W -f='${Status}' finger 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	echo -e '\033[0;31m'"Sensors application already installed, Ok to proceed!" $reset
+  echo
+  apt-get install finger;
 else
-	echo "Sensors application is not installed on device, part of the script will not work without it!"
-	echo "Would you like to install 'Sensors'?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		echo -e "$sensorsinstall"
-	else
-		echo
-	fi
+  echo
+  echo -e '\033[0;31m'"Finger application already installed, Ok to proceed!" $reset
 fi
 
-# Check for finger executable
-fingerinstall=$(sudo apt install finger)
-file="/usr/bin/finger"
-if [ -f "$file" ]
+if [ $(dpkg-query -W -f='${Status}' traceroute 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	echo -e '\033[0;31m'"Finger application already installed, Ok to proceed!" $reset
+  echo
+  apt-get install traceroute;
 else
-	echo "Finger application is not installed on device, part of the script will not work without it!"
-	echo "Would you like to install 'Finger'?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		echo -e "$fingerinstall"
-	else
-		echo
-	fi
+  echo
+  echo -e '\033[0;31m'"Traceroute application already installed, Ok to proceed!" $reset
 fi
 
-# Check for finger executable
-tracerouteinstall=$(sudo apt install traceroute)
-file="/usr/bin/traceroute"
-if [ -f "$file" ]
+if [ $(dpkg-query -W -f='${Status}' dmidecode 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	echo -e '\033[0;31m'"Traceroute application already installed, Ok to proceed!" $reset
+  echo
+  apt-get install dmidecode;
 else
-	echo "Traceroute application is not installed on device, part of the script will not work without it!"
-	echo "Would you like to install 'Traceroute'?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		echo -e "$tracerouteinstall"
-	else
-		echo
-	fi
+  echo
+  echo -e '\033[0;31m'"Dmidecode application already installed, Ok to proceed!" $reset
 fi
 
-# Check for dmidecode executable
-dmiinstall=$(sudo apt install dmidecode)
-file="/usr/sbin/dmidecode"
-if [ -f "$file" ]
+if [ $(dpkg-query -W -f='${Status}' ufw 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	echo -e '\033[0;31m'"Dmidecode application already installed, Ok to proceed!" $reset
+  echo
+  apt-get install ufw;
+  echo
 else
-	echo "Dmidecode application is not installed on device, part of the script will not work without it!"
-	echo "Would you like to install 'Dmidecode'?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		echo -e "$dmiinstall"
-	else
-		echo
-	fi
-fi
-
-# Check for ufw executable
-ufwinstall=$(sudo apt install ufw)
-file="/usr/sbin/ufw"
-if [ -f "$file" ]
-then
-	echo -e '\033[0;31m'"UFW application already installed, Ok to proceed!" $reset
-	echo
-else
-	echo "UFW application is not installed on device, part of the script will not work without it!"
-	echo "Would you like to install 'UFW'?(y/n): "
-	read user_input
-	if [ ${user_input} = y ]
-	then
-		echo -e "$ufwinstall"
-	else
-		echo
-	fi
+  echo
+  echo -e '\033[0;31m'"UFW application already installed, Ok to proceed!" $reset
+  echo
 fi
 
 # Define Variable reset
