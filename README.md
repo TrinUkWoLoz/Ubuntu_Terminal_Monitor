@@ -10,7 +10,7 @@ Program will offer install of required software
 Accept install of 'monitor' command to allow simple running of program
 
 ####Donations 
-(for this hungry broke hippo) welcome at:
+More programs in progress. Please donate to this hungry broke hippo:
 
 18t1qnVmnNhCPrC5u2c72HSHGdYHwdsrjd
 

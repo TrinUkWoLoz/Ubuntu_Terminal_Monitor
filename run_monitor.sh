@@ -334,12 +334,12 @@ cat /tmp/ramcache | grep -v "Swap"
 echo -e '\033[0;31m'"Swap Usage:" $reset
 cat /tmp/ramcache | grep -v "Mem"
 
-echo
-
-# contents of comp directory
-compdir=$(./directory_scan.sh /)
-echo -e '\033[0;31m'"Computer directory contents:"
-echo $reset"$compdir"
+#echo
+#
+## contents of comp directory
+#compdir=$(./directory_scan.sh /)
+#echo -e '\033[0;31m'"Computer directory contents:"
+#echo $reset"$compdir"
 
 echo
 
@@ -567,6 +567,7 @@ then
 	average=$(./cpu_average.sh)
 	echo -e '\033[0;31m'"CPU utilisation % over 30 seconds:"
 	echo $reset"$average"
+
 	echo
   echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
   echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
@@ -599,6 +600,15 @@ else
   echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
   echo
 fi
+
+echo "$(tput setaf 4)More programs in progress. Please donate to this hungry broke hippo:"
+echo
+echo "$(tput setaf 1)18t1qnVmnNhCPrC5u2c72HSHGdYHwdsrjd"
+echo
+echo "$(tput setaf 4)""Yours truly:"
+echo
+echo "$(tput setaf 2)W1z4R|)ofL0Z"
+echo
 
 # Unset Variables
 unset reset os architecture kernelrelease internalip externalip nameserver loadaverage
