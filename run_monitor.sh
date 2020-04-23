@@ -1,16 +1,24 @@
 #!/bin/bash
 
-####################################################################################################
-#                Ubuntu System and Network Monitor Tool (run_monitor.sh)                           #                                                                                                                                             #
-####################################################################################################
-
-#! /bin/bash
-clear
 unset reset os architecture kernelrelease internalip externalip nameserver loadaverage
 
-sudo find / -name "Ubuntu_Terminal_Monitor" > /tmp/currentdirectory
-curdir=$(cat /tmp/currentdirectory)
-cd $curdir
+reset=$(tput sgr0)
+
+  echo
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+	echo " "
+	echo " "
+	echo -e "\033[0;36m""   #################################################################################################### " $reset
+  echo -e "\033[0;36m""   #                Ubuntu System and Network Monitor Tool ( W1z4R|)ofL0Z )                           # " $reset                                                                                                                                         #
+  echo -e "\033[0;36m""   #################################################################################################### " $reset
+	echo " "
+	echo " "
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo
 
 while getopts iv name
 do
@@ -41,9 +49,6 @@ fi
 if [[ $# -eq 0 ]]
 then
 {
-
-# Define Variable reset
-reset=$(tput sgr0)
 
 # Offer of installing script for 'monitor' command
 monitor=$(./run_monitor.sh -i)
@@ -234,7 +239,7 @@ loadaverage=$(top -n 1 -b | grep "load average:" | awk '{print $10 $11 $12}')
 echo -e '\033[0;31m'"Load Average:" $reset $loadaverage
 
 # Number of executable commands
-excount=$(./pathcommands.sh)
+excount=$(./executable_scan.sh)
 echo -e '\033[0;31m'"Number of executable commands:" $reset"$excount"
 
 # Log Directry Size
@@ -332,7 +337,7 @@ cat /tmp/ramcache | grep -v "Mem"
 echo
 
 # contents of comp directory
-compdir=$(./contents.sh /)
+compdir=$(./directory_scan.sh /)
 echo -e '\033[0;31m'"Computer directory contents:"
 echo $reset"$compdir"
 
@@ -552,54 +557,54 @@ fi
 echo
 
 # CPU average
-echo -e '\033[0;31m'"Would you like to see CPU usage averages over 30 seconds? (y/n): "
+echo -e '\033[0;31m'"Would you like to see CPU utilisation % over 30 seconds? (y/n): "
 #echo -e '\033[0;31m'"(selecting yes deletes results,variables and temp files)"
 echo $reset
 read user_input
 if [ ${user_input} = y ]
     echo " "
 then
-	average=$(./Average.sh)
-	echo
-	echo
-	echo -e '\033[0;31m'"CPU Averages over 30 seconds:"
+	average=$(./cpu_average.sh)
+	echo -e '\033[0;31m'"CPU utilisation % over 30 seconds:"
 	echo $reset"$average"
 	echo
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-	echo
-	echo
-	echo -e "\033[0;36m""   End of script. Written by W1z4R|)ofL0Z                    		                      " $reset
-	echo
-	echo
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+	echo " "
+	echo " "
+	echo -e "\033[0;36m""   #################################################################################################### " $reset
+  echo -e "\033[0;36m""   #                           End of script. Written by W1z4R|)ofL0Z                                 # " $reset                                                                                                                                         #
+  echo -e "\033[0;36m""   #################################################################################################### " $reset
+	echo " "
+	echo " "
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo
 else
-	echo
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-	echo
-	echo
-	echo -e "\033[0;36m""   End of script. Written by W1z4R|)ofL0Z                    		                      " $reset
-	echo
-	echo
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-    echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
-	echo
-	echo
+  echo
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+	echo " "
+	echo " "
+	echo -e "\033[0;36m""   #################################################################################################### " $reset
+  echo -e "\033[0;36m""   #                           End of script. Written by W1z4R|)ofL0Z                                 # " $reset                                                                                                                                         #
+  echo -e "\033[0;36m""   #################################################################################################### " $reset
+	echo " "
+	echo " "
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
+  echo
 fi
-
-echo "  "
 
 # Unset Variables
 unset reset os architecture kernelrelease internalip externalip nameserver loadaverage
 
 # Remove Temporary Files
-rm /tmp/osrelease /tmp/who /tmp/ramcache /tmp/cpuusageaverage
+rm /tmp/osrelease /tmp/who /tmp/ramcache
 }
 fi
 shift $(($OPTIND -1))

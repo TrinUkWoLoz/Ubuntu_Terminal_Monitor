@@ -12,7 +12,3 @@ dns_server=$(nmcli device show $interface_in_use | grep IP4.DNS)
 
 echo -e '\033[0;31m'"DNS Server/s:" 
 echo -e $reset $dns_server
-
-
-
-

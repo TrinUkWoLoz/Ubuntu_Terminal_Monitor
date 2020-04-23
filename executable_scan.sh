@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#How many commands: a simple script to count how many executable
-#commands are in your current PATH
-
 IFS=":"
 count=0 ; nonex=0
 for directory in $PATH ; do

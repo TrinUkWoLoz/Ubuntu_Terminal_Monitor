@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#formatdir--Outputs a directory listing in a friendly and useful format
-
-#Note that you need to ensure "scriptbc" (Script #9) is in your current path
-#because it's invoked within the script more than once.
-
 scriptbc=$(which scriptbc)
 
 
@@ -28,9 +23,9 @@ readablesize()
 if [ $# -gt 1 ] ; then
 	echo "Usage: $0 [dirname]" >&2
 	exit 1
-elif [ $# -eq 1 ] ; then			#Specified a directory other than the current one?
-	cd "$@"							#Then let's change to that one.
-	if [ $? -ne 0 ]	; then			#Or quit if the directory doesn't exist.
+elif [ $# -eq 1 ] ; then
+	cd "$@"
+	if [ $? -ne 0 ]	; then
 		exit 1
 	fi
 fi
