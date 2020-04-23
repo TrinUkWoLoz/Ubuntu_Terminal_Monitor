@@ -570,7 +570,7 @@ then
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
 	echo
 	echo
-	echo -e "\033[0;36m""   End of script. Written by W1z4r|)0fL0z_TnT! 	                              " $reset
+	echo -e "\033[0;36m""   End of script. Written by W1z4R|)ofL0Z                    		                      " $reset
 	echo
 	echo
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
@@ -583,7 +583,7 @@ else
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
 	echo
 	echo
-	echo -e "\033[0;36m""   End of script. Written by W1z4r|)0fL0z_TnT! 		                      " $reset
+	echo -e "\033[0;36m""   End of script. Written by W1z4R|)ofL0Z                    		                      " $reset
 	echo
 	echo
     echo "$(tput setaf 3)=========================================================$(tput setab 0)$(tput sgr 0)" $reset
