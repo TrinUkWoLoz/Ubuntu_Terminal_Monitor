@@ -5,9 +5,10 @@ Final version of ubuntu system and network monitor program/tool
 * chmod +x *
 * ./run_monitor.sh
 
-Program will offer install of required software
+Program will automatically install required software
+To run the program with just the ' monitor ' command then use the below command (as root):
 
-Accept install of 'monitor' command to allow simple running of program
+./run_monitor.sh -i
 
 ####Donations 
 More programs in progress. Please donate to this hungry broke hippo:

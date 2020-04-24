@@ -50,14 +50,6 @@ if [[ $# -eq 0 ]]
 then
 {
 
-#FILE=/usr/bin/monitor
-#if test -f "$FILE"; then
-#   echo -e '\033[0;31m'"Monitor command already exists!" $reset
-#else
-#  monitor=$(./run_monitor.sh -i)
-#  $reset  "$monitor"
-#fi
-
 if [ $(dpkg-query -W -f='${Status}' lm-sensors 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
   echo
@@ -251,13 +243,15 @@ echo -e '\033[0;31m'"Available Network Interfaces:" $reset $nic
 
 # IPv4 Address
 #ipv4add=$(ifconfig | sed '2!d' | awk '{print $2}')
-ipv4add=$(hostname -I)
+#ipv4add=$(hostname -I)
+ipv4add=$(ip -c -4 addr)
 echo -e '\033[0;31m'"IPv4:" $reset $ipv4add
 
 #echo
 
 # IPv6 Address
-ipv6add=$(ifconfig | sed '3!d' | awk '{print $2 $3}')
+#ipv6add=$(ifconfig | sed '3!d' | awk '{print $2 $3}')
+ipv6add=$(ip -c -6 addr)
 echo -e '\033[0;31m'"IPv6:" $reset $ipv6add
 
 #echo
@@ -279,15 +273,16 @@ echo
 free -h | grep -v + > /tmp/ramcache
 echo -e '\033[0;31m'"Ram Usage:" $reset
 cat /tmp/ramcache | grep -v "Swap"
+echo
 echo -e '\033[0;31m'"Swap Usage:" $reset
 cat /tmp/ramcache | grep -v "Mem"
 
-#echo
-#
+echo
+
 ## contents of comp directory
-#compdir=$(./directory_scan.sh /)
-#echo -e '\033[0;31m'"Computer directory contents:"
-#echo $reset"$compdir"
+compdir=$(./directory_scan.sh /)
+echo -e '\033[0;31m'"Computer directory contents:"
+echo $reset "$compdir"
 
 echo
 
@@ -303,7 +298,7 @@ psram=$(ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head)
 echo -e '\033[0;31m'"Top Processes in Order of RAM Usage:"
 echo $reset"$psram"
 
-#echo
+echo
 
 # Check Disk Usage / Partition report
 lsblk > /tmp/diskusage
@@ -445,59 +440,39 @@ echo
 echo -e '\033[0;31m'"Would you like to whois external IP? (y/n): "
 echo $reset
 read user_input
-if [ ${user_input} = y ]
-    echo " "
+if [ ${user_input} = "y" ]
 then
+    echo
 	echo -e '\033[0;31m'"Whois On External IP: $reset "
 	echo -e '\033[0;31m'"Whois On External IP: $reset "| whois $externalip
 else
 	echo
 fi
 
-echo
-
 # Packet Statistics
 packetstats=$(netstat -s)
 echo -e '\033[0;31m'"Would you like to see packet statistics? (y/n): "
 echo $reset
 read user_input
-if [ ${user_input} = y ]
-    echo " "
+if [ ${user_input} = "y" ]
 then
 	echo -e '\033[0;31m'"Packet Statistics: $reset "
 	echo "$packetstats"
+	echo
 else
 	echo
 fi
-
-echo
 
 # Tracreroute on External IP
 traceroute=$(traceroute $externalip)
 echo -e '\033[0;31m'"Would you like to run traceroute on external IP? (y/n): "
 echo $reset
 read user_input
-if [ ${user_input} = y ]
-    echo " "
+if [ ${user_input} = "y" ]
 then
+    echo
 	echo -e '\033[0;31m'"Traceroute on External IP: $reset "
 	echo "$traceroute"
-else
-	echo
-fi
-
-echo
-
-# Tracreroute on google.com
-traceroutegoogle=$(traceroute google.com)
-echo -e '\033[0;31m'"Would you like to run traceroute on google.com? (y/n): "
-echo $reset
-read user_input
-if [ ${user_input} = y ]
-    echo " "
-then
-	echo -e '\033[0;31m'"Traceroute on google.com: $reset "
-	echo "$traceroutegoogle"
 else
 	echo
 fi
@@ -509,13 +484,12 @@ echo -e '\033[0;31m'"Would you like to see CPU utilisation % over 30 seconds? (y
 #echo -e '\033[0;31m'"(selecting yes deletes results,variables and temp files)"
 echo $reset
 read user_input
-if [ ${user_input} = y ]
-    echo " "
+if [ ${user_input} = "y" ]
 then
+    echo
 	average=$(./cpu_average.sh)
 	echo -e '\033[0;31m'"CPU utilisation % over 30 seconds:"
 	echo $reset"$average"
-
 	echo
   echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
   echo "$(tput setaf 3)==========================================================================================================$(tput setab 0)$(tput sgr 0)" $reset
