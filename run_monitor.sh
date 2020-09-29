@@ -523,9 +523,7 @@ else
   echo
 fi
 
-echo "$(tput setaf 4)More programs in progress. Please donate to this hungry broke hippo:"
-echo
-echo "$(tput setaf 1)18t1qnVmnNhCPrC5u2c72HSHGdYHwdsrjd"
+echo "$(tput setaf 4)More programs in progress"
 echo
 echo "$(tput setaf 4)""Yours truly:"
 echo
