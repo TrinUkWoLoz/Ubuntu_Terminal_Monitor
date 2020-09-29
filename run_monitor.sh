@@ -95,6 +95,16 @@ then
 else
   echo
   echo -e '\033[0;31m'"UFW application already installed, Ok to proceed!" $reset
+fi
+
+if [ $(dpkg-query -W -f='${Status}' curl 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  echo
+  apt-get install curl;
+  echo
+else
+  echo
+  echo -e '\033[0;31m'"Curl application already installed, Ok to proceed!" $reset
   echo
 fi
 
@@ -244,14 +254,14 @@ echo -e '\033[0;31m'"Available Network Interfaces:" $reset $nic
 # IPv4 Address
 #ipv4add=$(ifconfig | sed '2!d' | awk '{print $2}')
 #ipv4add=$(hostname -I)
-ipv4add=$(ip -c -4 addr)
+ipv4add=$(curl ifconfig.me)
 echo -e '\033[0;31m'"IPv4:" $reset $ipv4add
 
 #echo
 
 # IPv6 Address
 #ipv6add=$(ifconfig | sed '3!d' | awk '{print $2 $3}')
-ipv6add=$(ip -c -6 addr)
+ipv6add=$(/sbin/ifconfig | grep inet6)
 echo -e '\033[0;31m'"IPv6:" $reset $ipv6add
 
 #echo
@@ -383,8 +393,9 @@ echo
 
 # Check DNS
 #nameservers=$(cat /etc/resolv.conf | sed '1 d' | awk '{print $2}')
-#echo -e '\033[0;31m'"Name Servers:" $reset $nameservers
-./dns_result_fix.sh
+echo -e '\033[0;31m'"DNS:"
+dns_server=$(systemd-resolve --status | grep "Current DNS Server:")
+echo $reset"$dns_server"
 
 echo
 
@@ -456,6 +467,7 @@ echo $reset
 read user_input
 if [ ${user_input} = "y" ]
 then
+echo
 	echo -e '\033[0;31m'"Packet Statistics: $reset "
 	echo "$packetstats"
 	echo
